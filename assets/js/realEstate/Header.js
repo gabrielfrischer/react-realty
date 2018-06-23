@@ -1,21 +1,23 @@
 import React, { Component} from 'react'
 
+
 export default class Header extends Component {
   constructor () {
     super()
     this.state = {
-      name: ''
+      name: '',
     }
   }
+
   render () {
     return (
         <header>
-            <div className="logo">Logo</div>
+           
+            <div className="logo">Angels Realty  </div>
+
+            <img height="140" src="https://preview.ibb.co/eAaJNy/Angels_Realty_Full_Logo.png" alt="Angels_Realty_Full_Logo" border="0"/>
             <nav>
-                <a href="#">Create Ads</a>
-                <a href="#">About Us</a>
-                <a href="#">Log In</a>
-                <a href="#" className="register-btn">Register</a>
+                <a href="#" className="register-btn">Contact Steve at (818) 577-8499</a>
             </nav>
         </header>
     )

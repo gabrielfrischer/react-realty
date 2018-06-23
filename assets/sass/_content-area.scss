@@ -1,20 +1,94 @@
+
+
+.Collapsible {
+    background: #f5f5f5; /* Old browsers */
+   
+    width:100%
+  }
+  
+  
+  //The content within the collaspable area
+  .Collapsible__contentInner {
+    width:100%;
+    padding: 20px;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius: 20px;
+    border-top: 0;
+  
+    p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 20px;
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  //The link which when clicked opens the collapsable area
+  .Collapsible__trigger {
+    display: block;
+    font-weight: 400;
+    text-decoration: none;
+    text-align:center;
+    position: relative;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b066fe+0,63e2ff+100 */
+background: #b066fe; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #b066fe 0%, #63e2ff 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #b066fe 0%,#63e2ff 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #b066fe 0%,#63e2ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b066fe', endColorstr='#63e2ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: white;
+    font-size:2rem;
+    cursor:pointer;
+  
+  
+    &:after {
+      font-family: 'FontAwesome';
+      content: '\f107';
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      display: block;
+      transition: transform 600ms;
+    }
+  
+    &.is-open {
+      &:after {
+        transform: rotateZ(180deg);
+      }
+    }
+  
+    &.is-disabled {
+      opacity: 0.5;
+      background-color: grey;
+    }
+  }
+  
+ 
+
 #content-area {
     overflow: auto;
     width: 100%;
-    min-height: 100vh;
+    background: #f1fbff;
 }
 
 #filter {
     background: $offWhite;
-    width: 30%;
-    display: inline-block;
-    float: left;
-    max-width: 300px;
+    width: 100%;
+    display: inline;
     
     .inside {
-        padding: 20px;
-        max-width: 300px;
+        padding: 10px;
+        max-width: 100%;
+        display: block;
+        margin-left: -1.8rem;
     }
+
     
     h4 {
         margin-bottom: 25px;
@@ -24,29 +98,41 @@
     }
     
     select {
-        background: transparent;
-        padding: 10px;
-        font-size: 14px;
+        background:white;
+        padding-left: 10px;
+        font-size: 1.5rem;
         font-weight: 500;
         color: #1B1B1B;
-        display: block;
+        display: inline-block;
         margin-bottom: 25px;
-        width: 100%;
+        border-radius: 20px;
+        width: 20%;
+        border:3px solid darkblue;
     }
     
     .filters {
+        margin-left:1.9rem;
+        border-radius:20px;
+        border:2px solid darkblue;
+        padding:20px;
+        margin-bottom:20px;
         .title {
-            font-size: 0.9rem;
+            font-size: 2.0rem;
             display: block;
-            margin-bottom: 1rem;
+            text-align: center;
+            background:white;
+            word-spacing: 10rem;
+            margin-bottom: 1.0rem;
             color: $darkGray;
         }
         
         input[type="text"] {
             border: none;
+            margin-left:1rem;
             border: 1px solid $lightGray;
+            border-radius: 20px;
             // border-radius: 5px;
-            font-size: 1rem;
+            font-size: 1.5rem;
             padding: 0.4rem;
             display: inline-block;
             width: 45%;
@@ -68,11 +154,20 @@
     }
 }
 
+#cityLabel {
+    font-size:1.9rem;
+    margin-left:20%;
+}
+#bedRoomLabel {
+    font-size:1.9rem;
+    margin-left:10px;
+}
+
+
 #listings {
     background: white;
     display: inline-block;
-    width: 70%;
-    float: left;
+    width: 100%;
     padding: 15px;
     
     .search-area {
@@ -80,9 +175,9 @@
             border: none;
             border-bottom: 2px solid $darkGray;
             color: $lightGray;
-            width: 70%;
+            width: 90%;
             background: transparent;
-            font-size: 2rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             outline: none;
             font-weight: 100;
@@ -129,8 +224,8 @@
         
         .listing {
             background: white;
-            border-radius: 5px;
-            box-shadow: 0px 9px 54px -4px rgba(224, 224, 224, 1);
+            border-radius: 20px;
+            box-shadow: 0px 9px 54px -4px rgb(184, 184, 184);
             margin-bottom: 20px;
         }
         
@@ -197,14 +292,14 @@
                 .user-name {
                     font-size: 0.9rem;
                     font-weight: 300;
-                    display: block;
+                    display: inline-block;
                     color: rgba(255, 255, 255, 1);
                     margin-top: 3px;
                     margin-bottom: 5px;
                 }
                 
                 .post-date {
-                    display: block;
+                    display: inline-block;
                     color: rgba(255, 255, 255, 0.7); 
                     font-size: 0.9rem;
                 }
@@ -241,22 +336,23 @@
                 font-size: 1rem;
                 display: block;
                 margin-bottom: 10px;
-                color: $darkGray;
+                color: black;
             }
             
             .location {
                 display: block;
                 font-size: 1.2rem;
-                COLOR: $lightGray;
+                color: rgb(121, 121, 121);
             }
         }
     }
 }
 
+
 .view-btn {
-    background: black;
+    background: white;
     padding: 8px;
-    font-sze: 0.9rem;
+    font-size: 0.9rem;
     border-radius: 5px;
     text-align: center;
     max-width: 150px;
@@ -288,6 +384,21 @@
             }
         }
     }
+}
+
+.max-price {
+text-align:right;
+}
+
+.max-floor-space {
+text-align: right;
+}
+.min-price {
+text-align:left;
+}
+
+.min-floor-space {
+text-align: left;
 }
 
 /*

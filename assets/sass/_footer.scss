@@ -1,6 +1,11 @@
 footer {
   width: 100%;
-  background-color: $darkPurple;
+  background: #b066fe; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #b066fe 0%, #63e2ff 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #b066fe 0%,#63e2ff 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #b066fe 0%,#63e2ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b066fe', endColorstr='#63e2ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
   padding: 1em;
   // margin-top: 1em;
   ul li {

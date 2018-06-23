@@ -1,21 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Parisienne');
+
+$cursiveFont : 'Parisienne', cursive;
+
+
 header {
-    background: $darkPurple;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b066fe+0,63e2ff+100 */
+background: #b066fe; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #b066fe 0%, #63e2ff 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #b066fe 0%,#63e2ff 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #b066fe 0%,#63e2ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b066fe', endColorstr='#63e2ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     color: white;
     overflow: auto;
-    padding: 20px 15px;
+    padding: 10px 15px;
     
     .logo {
         float: left;
+        margin-top:50px;
+        font-size:2.9rem;
+        font-family: $cursiveFont;
     }
     
     nav {
         float: right;
+        margin-top:50px;
         
         a {
             color: white;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             font-weight: 300;
             padding: 7px 20px;
+            
             text-decoration: none;
             &:hover {
                 color: $pink;

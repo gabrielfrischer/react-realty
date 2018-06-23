@@ -2,9 +2,14 @@ import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
 import Header from './Header.js'
 import Filter from './Filter.js'
-import Listings from './Listings.js'
 import listingsData from './data/listingsData.js'
+import Listings from './Listings.js'
 import Footer from './Footer.js'
+import * as firebase from 'firebase';
+
+
+
+
 
 class App extends Component {
   constructor () {
@@ -13,12 +18,11 @@ class App extends Component {
       name: 'Joe',
       listingsData,
       city: 'All',
-      homeType: 'All',
       bedrooms: 0,
       min_price: 0,
-      max_price: 10000000,
+      max_price: 9000,
       min_floor_space: 0,
-      max_floor_space: 50000,
+      max_floor_space: 6500,
       elevator: false,
       finished_basement: false,
       gym: false,
@@ -27,14 +31,40 @@ class App extends Component {
       populateFormsData: '',
       sortby: 'price-dsc',
       view: 'box',
-      search: ''
+      search: '',
     }
     this.change = this.change.bind(this)
     this.filteredData = this.filteredData.bind(this)
     this.populateForms = this.populateForms.bind(this)
     this.changeView = this.changeView.bind(this)
   }
+
+  
+
+
   componentWillMount() {
+  
+    const config = {
+        apiKey: "AIzaSyCdAnY8Q6wX0JpwM96Cu6ysl3YAKn1a1Vg",
+        authDomain: "angelsrealty-32fd5.firebaseapp.com",
+        databaseURL: "https://angelsrealty-32fd5.firebaseio.com",
+        projectId: "angelsrealty-32fd5",
+        storageBucket: "angelsrealty-32fd5.appspot.com",
+        messagingSenderId: "318413149889"
+      };
+    const fb = firebase
+        .initializeApp(config)
+        .database()
+        .ref('/server/saved-data/data/JSON');
+
+        fb.on('value', snapshot => {  
+            const store = snapshot.val();
+        console.log(store)
+        this.setState({
+            filteredData:store
+        })
+          });
+    
     var listingsData = this.state.listingsData.sort((a, b) => {
         return a.price - b.price
     })
@@ -42,6 +72,9 @@ class App extends Component {
         listingsData
     })
   }
+
+
+  
   change(event) {
     var name = event.target.name;
     var value = (event.target.type === 'checkbox') ? event.target.checked  : event.target.value;
@@ -69,12 +102,6 @@ class App extends Component {
           })
       }
 
-      if (this.state.homeType != "All") {
-          newData = newData.filter((item) => {
-            return item.homeType == this.state.homeType
-          })
-      }
-
       if (this.state.sortby == 'price-dsc') {
           newData = newData.sort((a, b) => {
               return a.price - b.price
@@ -99,35 +126,13 @@ class App extends Component {
          })
       }
 
-      // Filter Checkboxes
-      if (this.state.elevator) {
-          newData = newData.filter((item) => {
-              return item.extras.includes('elevator') == this.state.elevator
-          })
-      }
-
-      if (this.state.swimming_pool) {
-          newData = newData.filter((item) => {
-              return item.extras.includes('pool') == this.state.swimming_pool
-          })
-      }
-
-      if (this.state.finished_basement) {
-          newData = newData.filter((item) => {
-              return item.extras.includes('basement') == this.state.finished_basement
-          })
-      }
-
-      if (this.state.gym) {
-          newData = newData.filter((item) => {
-              return item.extras.includes('gym') == this.state.gym
-          })
-      }
 
       this.setState({
           filteredData: newData
       })
   }
+
+
   populateForms() {
       // city
       var cities = this.state.listingsData.map((item) => {
@@ -135,13 +140,6 @@ class App extends Component {
       })
       cities = new Set(cities)
       cities = [...cities].sort()
-
-      // homeType
-      var homeTypes = this.state.listingsData.map((item) => {
-          return item.homeType
-      })
-      homeTypes = new Set(homeTypes)
-      homeTypes = [...homeTypes].sort()
 
       // bedrooms
       var bedrooms = this.state.listingsData.map((item) => {
@@ -152,7 +150,6 @@ class App extends Component {
 
       this.setState({
           populateFormsData: {
-              homeTypes,
               bedrooms,
               cities
           }
@@ -160,15 +157,25 @@ class App extends Component {
          // console.log(this.state)
       })
   }
+
+
+componentDidMount() {
+ 
+
+}
+
   render () {
     return (
         <div>
             <Header />
             <section id='content-area'>
+           
                 <Filter change={this.change} globalState={this.state} populateAction={this.populateForms}/>
                 <Listings listingsData={this.state.filteredData} change={this.change} globalState={this.state} changeView={this.changeView}/>
             </section>
+            
             <Footer />
+            
         </div>
     )
   }

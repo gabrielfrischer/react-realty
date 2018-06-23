@@ -9,8 +9,8 @@ export default class Footer extends Component {
     return (
       <footer>
         <ul>
-          <li>Twitter: <a href="https://twitter.com/AndreWatts85">@andrewatts85</a></li>
-          <li>Portfolio: <a href="https://andrewatts85.github.io/responsive-portfolio/"><span>Andre Watts</span></a></li>
+          <li>BRE License #: <a href="http://www2.dre.ca.gov/PublicASP/pplinfo.asp?start=1">01868104</a></li>
+        
         </ul>
       </footer>
     )

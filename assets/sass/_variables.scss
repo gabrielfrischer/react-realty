@@ -1,13 +1,13 @@
-$darkPurple: #0C002B;
+$darkPurple: #63E2FF;
 $pink: #FF728C;
 $offWhite: #FAF7F5;
 $white: #FFFEFF;
-$darkGray: #828D9D;
-$lightGray: #DADDE2;
+$darkGray: #000000;
+$lightGray: white;
 
 // Grid System
-$grid-columns: 12;
-$grid-max-width: 1200px;
+$grid-columns:12;
+$grid-max-width: 100%;
 $breakpoint-small: "only screen and (min-width: 0px)";
 $breakpoint-medium: "only screen and (min-width: 768px)";
 $breakpoint-large: "only screen and (min-width: 1008px)";
