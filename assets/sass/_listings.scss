@@ -2,6 +2,10 @@
 
 $cursiveFont : 'Parisienne', cursive;
 
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed');
+
+$trademarkfont : 'Encode Sans Condensed', sans-serif;
+
 
 header {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b066fe+0,63e2ff+100 */
@@ -19,6 +23,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b066fe', end
         margin-top:50px;
         font-size:2.9rem;
         font-family: $cursiveFont;
+    }
+    .trademark {
+        font-family: $trademarkfont;
+        font-size:16px;
     }
     
     nav {

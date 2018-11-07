@@ -2,10 +2,9 @@ import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
 import Header from './Header.js'
 import Filter from './Filter.js'
-import listingsData from './data/listingsData.js'
 import Listings from './Listings.js'
+import listingsData from './data/listingsData'
 import Footer from './Footer.js'
-import * as firebase from 'firebase';
 
 
 
@@ -32,6 +31,7 @@ class App extends Component {
       sortby: 'price-dsc',
       view: 'box',
       search: '',
+      items: []
     }
     this.change = this.change.bind(this)
     this.filteredData = this.filteredData.bind(this)
@@ -43,28 +43,7 @@ class App extends Component {
 
 
   componentWillMount() {
-  
-    const config = {
-        apiKey: "AIzaSyCdAnY8Q6wX0JpwM96Cu6ysl3YAKn1a1Vg",
-        authDomain: "angelsrealty-32fd5.firebaseapp.com",
-        databaseURL: "https://angelsrealty-32fd5.firebaseio.com",
-        projectId: "angelsrealty-32fd5",
-        storageBucket: "angelsrealty-32fd5.appspot.com",
-        messagingSenderId: "318413149889"
-      };
-    const fb = firebase
-        .initializeApp(config)
-        .database()
-        .ref('/server/saved-data/data/JSON');
 
-        fb.on('value', snapshot => {  
-            const store = snapshot.val();
-        console.log(store)
-        this.setState({
-            filteredData:store
-        })
-          });
-    
     var listingsData = this.state.listingsData.sort((a, b) => {
         return a.price - b.price
     })
@@ -159,10 +138,7 @@ class App extends Component {
   }
 
 
-componentDidMount() {
- 
 
-}
 
   render () {
     return (

@@ -1,13 +1,27 @@
-import React, { Component} from 'react'
+import React, { Component} from 'react';
+import {Modal} from 'boron/DropModal';
+import SlideShow from 'react-image-show';
 
 export default class Listings extends Component {
   constructor () {
     super()
     this.state = {
-      name: ''
+      name: '',
+      activeModal: null,
     }
     this.loopListings = this.loopListings.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
+ 
+  clickHandler(e, index) {
+    this.setState({ activeModal: index })
+}
+
+  hideModal() {
+    this.setState({ activeModal: null })
+}
+ 
   loopListings() {
       const {listingsData} = this.props;
       
@@ -23,31 +37,45 @@ export default class Listings extends Component {
                         <div className="listing-img" style={{background: `url("${listing.image}") no-repeat center center`}}>
                             <span className="address">{listing.availability}</span>
                             <div className="details">
-                                <div className="col-md-3">
-                                    <div className="user-img"></div>
-                                </div>
-                                <div className="col-md-9">
+                                {/* <div className="col-md-3">
+                                    <a  className="user-img" style={{background: `url("${listing.image}") no-repeat center center`}}></a>
+                                </div> */}
+                                <div className="col-md-12">
                                     <div className="user-details">
-                                        <span className="user-name">Broker: Steven</span>
-                                        <span className="post-date">(818) 577-8499</span>
+                                        <span className="user-name">Broker: Steven{"\n"}</span>
                                     </div>
                                     <div className="listing-details">
                                         <div className="floor-space"><i className="fa fa-square-o" aria-hidden="true"></i><span>{listing.floorSpace} ft&sup2;</span></div>
                                         <div className="bedrooms">
                                             <i className="fa fa-bed" aria-hidden="true"></i>
-                                            <span>{listing.rooms} bedrooms</span>
+                                            <span>{listing.rooms} bedroom(s)</span>
                                         </div>
+                                        <a className="view-btn" id={index}  onClick={e => this.clickHandler(e, index)}>View Pics</a>
+                                        <Modal
+        id={index}
+        show={this.state.activeModal === index}
+        onHide={this.hideModal}
+    >
+    
+    <SlideShow
+        images={listing.suppImagePics}
+        width="100%"
+        imagesWidth="600px"
+        imagesHeight="450px"
+        imagesHeightMobile="56vw"
+        thumbnailsWidth="15vw"
+        thumbnailsHeight="20vw"
+        indicators thumbnails fixedImagesHeight arrows
+      />
+    </Modal>
+    
                                     </div>
-                                    <div className="view-btn">
-                                    <a href={listing.urli}>
-                                        View Listing
-                                    </a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                         <div className="bottom-info">
-                            <span className="price" >${listing.price}/month</span>
+                            <span className="price" ><i className="fa fa-usd" aria-hidden="true"></i>{listing.price}/month</span>
                             <span className="location" ><i className="fa fa-map-marker" aria-hidden="true"></i> {listing.city}</span>
                         </div>
                     </div>
@@ -60,33 +88,46 @@ export default class Listings extends Component {
                 <div className="col-md-3" key={index}>
                       <div className="listing">
                         <div className="listing-img" style={{background: `url("${listing.image}") no-repeat center center`}}>
-                            <span className="address">{listing.city}</span>
+                            <span className="address">{listing.availability}</span>
                             <div className="details">
-                                <div className="col-md-3">
-                                    <div className="user-img"></div>
-                                </div>
-                                <div className="col-md-9">
+                                {/* <div className="col-md-3">
+                                    <a className="user-img" style={{background: `url("${listing.image}") no-repeat center center`}}></a>
+                                </div> */}
+                                <div className="col-md-12">
                                     <div className="user-details">
-                                        <span className="user-name">Broker: Steven</span>
-                                        <span className="post-date">(818) 577-8499</span>
+                                        <span className="user-name">Broker: Steven {"\n"}</span>
                                     </div>
                                     <div className="listing-details">
                                         <div className="floor-space"><i className="fa fa-square-o" aria-hidden="true"></i><span>{listing.floorSpace} ft&sup2;</span></div>
                                         <div className="bedrooms">
                                             <i className="fa fa-bed" aria-hidden="true"></i>
-                                            <span>{listing.rooms} bedrooms</span>
+                                            <span>{listing.rooms} bedroom(s)</span>
                                         </div>
                                     </div>
-                                    <div className="view-btn">
-                                    <a href={listing.urli}>
-                                        View Listing
-                                    </a>
-                                    </div>
+                                    <a className="view-btn" id={index}  onClick={e => this.clickHandler(e, index)}>View Pics</a>
+                                    <Modal
+        id={index}
+        show={this.state.activeModal === index}
+        onHide={this.hideModal}
+    >
+     
+    <SlideShow
+        images={listing.suppImagePics}
+        width="100%"
+        imagesWidth="600px"
+        imagesHeight="450px"
+        imagesHeightMobile="56vw"
+        thumbnailsWidth="15vw"
+        thumbnailsHeight="20vw"
+        indicators thumbnails fixedImagesHeight
+      />
+    </Modal>
+                                    
                                 </div>
                             </div>
                         </div>
                         <div className="bottom-info">
-                            <span className="price" >${listing.price}/month</span>
+                            <span className="price" ><i className="fa fa-usd" aria-hidden="true"></i>{listing.price}/month</span>
                             <span className="location" ><i className="fa fa-map-marker" aria-hidden="true"></i> {listing.city}</span>
                         </div>
                     </div>
